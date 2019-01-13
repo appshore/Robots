@@ -1,0 +1,31 @@
+{
+  "name": "robots",
+  "version": "0.1.0",
+  "description": "Robots",
+  "license": "MIT",
+  "author": "bmi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appshore/Robots"
+  },
+  "main": "dist",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^5.11.1",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9"
+  },
+  "scripts": {
+    "dev": "nodemon -w src --exec \"babel-node src\"",
+    "build": "babel src -s -D -d dist",
+    "prestart": "npm run -s build",
+    "start": "node dist",
+    "test": "jest --watch"
+  }
+}
