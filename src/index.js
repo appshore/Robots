@@ -6,26 +6,26 @@ let robots = []
 let directions = ['N', 'E', 'S', 'W']
 
 // getGrid size
-const getGridSize = line => {
+export const getGridSize = line => {
   let [gx, gy] = line.split(' ')
   return { gx: parseInt(gx, 10), gy: parseInt(gy, 10) }
 }
 
 // get robot initial position and direction
-const getRobotVector = line => {
+export const getRobotVector = line => {
   let [rx, ry, rd] = line.split(' ')
   return { rx: parseInt(rx, 10), ry: parseInt(ry, 10), rd }
 }
 
 // get robot movements
-const getRobotMovements = line => line.split('')
+export const getRobotMovements = line => line.split('')
 
 // open input file
 const rl = readline.createInterface({
   input: fs.createReadStream('./data/input.txt')
 })
 
-const moveForward = ({ rx, ry, rd }) => {
+export const moveForward = ({ rx, ry, rd }) => {
   switch (rd) {
     case 'N':
       ry++
@@ -44,7 +44,7 @@ const moveForward = ({ rx, ry, rd }) => {
   return { rx, ry, rd }
 }
 
-const turnLeft = ({ rx, ry, rd }) => {
+export const turnLeft = ({ rx, ry, rd }) => {
   let idx = directions.findIndex(d => d === rd)
   if (idx > 0) {
     idx--
@@ -55,7 +55,7 @@ const turnLeft = ({ rx, ry, rd }) => {
   return { rx, ry, rd }
 }
 
-const turnRight = ({ rx, ry, rd }) => {
+export const turnRight = ({ rx, ry, rd }) => {
   let idx = directions.findIndex(d => d === rd)
   if (idx < 3) {
     idx++
@@ -66,7 +66,7 @@ const turnRight = ({ rx, ry, rd }) => {
   return { rx, ry, rd }
 }
 
-const nextMove = (vector, mvt) => {
+export const nextMove = (vector, mvt) => {
   switch (mvt) {
     case 'F':
       return moveForward(vector)
@@ -79,14 +79,14 @@ const nextMove = (vector, mvt) => {
 }
 
 // check if a vector is in the scent list
-const checkScent = (scents, vector) => {
+export const checkScent = (scents, vector) => {
   let v = `${vector.rx}${vector.ry}${vector.rd}`
   let ret = scents.findIndex(s => `${s.rx}${s.ry}${s.rd}` === v)
   return ret > -1
 }
 
 // check if a vector is in the scent list
-const checkOffGrid = (grid, vector) =>
+export const checkOffGrid = (grid, vector) =>
   vector.rx < 0 || vector.rx > grid.gx || vector.ry < 0 || vector.ry > grid.gy
 
 let lineIdx = 0
