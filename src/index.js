@@ -14,7 +14,7 @@ const getGridSize = line => {
 // get robot initial position and direction
 const getRobotVector = line => {
   let [rx, ry, rd] = line.split(' ')
-  return { rx: parseInt(rx), ry: parseInt(ry), rd }
+  return { rx: parseInt(rx, 10), ry: parseInt(ry, 10), rd }
 }
 
 // get robot movements
@@ -123,9 +123,9 @@ rl.on('close', () => {
     for (let mvt of mvts) {
       let newVector = nextMove(vector, mvt)
       let offGrid = checkOffGrid(grid, newVector)
-      let isScent = checkScent(scents, vector) 
+      let isScent = checkScent(scents, vector)
 
-      if (!isScent || !offGrid ) {
+      if (!isScent || !offGrid) {
         if (offGrid) {
           isLost = true
           scents.push(vector)
